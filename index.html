@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramadan 2026 - date</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #1e3c4f 0%, #0b2a3a 100%);
+            color: #f5e6d3;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 1.5rem 1.5rem;
+            opacity: 0;
+            animation: bodyFadeIn 1s ease forwards;
+        }
+
+        @keyframes bodyFadeIn {
+            to { opacity: 1; }
+        }
+
+        /* ----- Topbar with refined button animations (no pulse) ----- */
+        .topbar {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(10, 25, 35, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 0 0 20px 20px;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border-left: 1px solid rgba(255, 215, 0, 0.2);
+            border-right: 1px solid rgba(255, 215, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transform: translateY(-100%);
+            animation: slideDown 0.8s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            to { transform: translateY(0); }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffd966;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            transition: text-shadow 0.3s;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 15px #ffaa33, 0 0 30px #ffaa33;
+        }
+
+        .logo span {
+            font-size: 2.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 1.1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: #f5e6d3;
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 1px;
+            padding: 0.5rem 0.8rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            animation: linkFadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .nav-links a:nth-child(1) { animation-delay: 0.1s; }
+        .nav-links a:nth-child(2) { animation-delay: 0.2s; }
+        .nav-links a:nth-child(3) { animation-delay: 0.3s; }
+        .nav-links a:nth-child(4) { animation-delay: 0.4s; }
+        .nav-links a:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes linkFadeInUp {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ffd966;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd966;
+            background: rgba(255, 215, 0, 0.1);
+            transform: scale(1.05);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:active {
+            transform: scale(0.98);
+        }
+
+        /* ----- Main Container ----- */
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(10, 25, 35, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            text-align: center;
+            color: #ffd966;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .greeting {
+            font-size: 1.6rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            color: #e6d5a8;
+            border-bottom: 1px dashed #ffb347;
+            padding-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #ffd966;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        /* Countdown timer */
+        .countdown-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .timer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.8rem;
+        }
+
+        .timer-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.2rem 0.8rem;
+            border-radius: 24px;
+            min-width: 120px;
+            border: 1px solid #ffb347;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            animation: gentlePulse 2s infinite;
+        }
+
+        .timer-box:hover {
+            transform: scale(1.05);
+            background: rgba(255, 180, 60, 0.15);
+            border-color: #ffd966;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: none;
+        }
+
+        .timer-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px #ffaa33;
+            line-height: 1.2;
+        }
+
+        .timer-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffd966;
+        }
+
+        /* Quotes grid */
+        .quotes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .quote-card {
+            background: rgba(30, 50, 65, 0.7);
+            padding: 1.8rem;
+            border-radius: 30px;
+            max-width: 300px;
+            border-left: 6px solid #ffb347;
+            box-shadow: 0 15px 30px -8px black;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #f0e6d2;
+            animation: gentlePulse 2s infinite;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            background: rgba(255, 180, 60, 0.15);
+            border-left-color: #ffd966;
+            box-shadow: 0 20px 40px -5px rgba(255, 215, 0, 0.4);
+            animation: none;
+        }
+
+        /* Info sections (About, Prayer, Settings, Contact) */
+        .info-section {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: rgba(20, 35, 45, 0.6);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .info-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Prayer times with staggered entrance and pulse */
+        .prayer-times {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .prayer-item {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            min-width: 140px;
+            border: 1px solid #ffb347;
+            transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s, box-shadow 0.2s;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: none;
+        }
+
+        .info-section.visible .prayer-item {
+            opacity: 1;
+            transform: translateY(0);
+            animation: gentlePulse 2s infinite;
+        }
+
+        .info-section.visible .prayer-item:nth-child(1) { transition-delay: 0.1s; }
+        .info-section.visible .prayer-item:nth-child(2) { transition-delay: 0.2s; }
+        .info-section.visible .prayer-item:nth-child(3) { transition-delay: 0.3s; }
+        .info-section.visible .prayer-item:nth-child(4) { transition-delay: 0.4s; }
+        .info-section.visible .prayer-item:nth-child(5) { transition-delay: 0.5s; }
+        .info-section.visible .prayer-item:nth-child(6) { transition-delay: 0.6s; }
+
+        .prayer-item:hover {
+            transform: scale(1.05) !important;
+            background: rgba(255, 180, 60, 0.15);
+            border-color: #ffd966;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            animation: none;
+        }
+
+        .prayer-name {
+            font-weight: 600;
+            color: #ffd966;
+            font-size: 1.3rem;
+        }
+
+        .prayer-time {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        /* Settings section */
+        .settings-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .setting-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            text-align: left;
+        }
+
+        .setting-label {
+            font-size: 1.2rem;
+            color: #ffd966;
+            font-weight: 500;
+        }
+
+        .setting-input,
+        .setting-select {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #ffb347;
+            border-radius: 40px;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .setting-input:focus,
+        .setting-select:focus {
+            border-color: #ffd966;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .setting-input:hover,
+        .setting-select:hover {
+            border-color: #ffd966;
+            background: rgba(255, 180, 60, 0.1);
+            transform: scale(1.02);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            animation: gentlePulse 2s infinite;
+        }
+
+        .radio-option:hover {
+            background: rgba(255, 180, 60, 0.1);
+            transform: scale(1.05);
+            animation: none;
+        }
+
+        .radio-option input[type="radio"] {
+            appearance: none;
+            width: 1.2rem;
+            height: 1.2rem;
+            border: 2px solid #ffb347;
+            border-radius: 50%;
+            background: transparent;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"]:checked {
+            background: #ffd966;
+            border-color: #ffd966;
+            box-shadow: 0 0 10px #ffaa33;
+        }
+
+        .radio-option input[type="radio"]:hover {
+            border-color: #ffd966;
+        }
+
+        .setting-button {
+            background: rgba(255, 180, 60, 0.2);
+            border: 2px solid #ffb347;
+            color: #ffd966;
+            font-size: 1.3rem;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+            align-self: center;
+            animation: gentlePulse 2s infinite;
+        }
+
+        .setting-button:hover {
+            background: rgba(255, 180, 60, 0.4);
+            border-color: #ffd966;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            animation: none;
+        }
+
+        .setting-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Contact items */
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-item {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            border: 1px solid #ffb347;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            animation: gentlePulse 2s infinite;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.05);
+            background: rgba(255, 180, 60, 0.15);
+            border-color: #ffd966;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            animation: none;
+        }
+
+        /* Gentle pulse keyframes */
+        @keyframes gentlePulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.3); }
+            70% { box-shadow: 0 0 0 8px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1rem;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .topbar {
+                padding: 0.8rem 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+            .container { padding: 1.5rem; }
+            .timer-box { min-width: 70px; padding: 0.8rem 0.2rem; }
+            .timer-number { font-size: 2.5rem; }
+            .timer-label { font-size: 0.8rem; }
+            .quote-card { max-width: 280px; padding: 1.5rem; }
+            h1 { font-size: 2.5rem; }
+            .greeting { font-size: 1.2rem; }
+            .prayer-item { min-width: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar -->
+    <header class="topbar">
+        <div class="logo">
+            <span></span> Ramadan 2026
+        </div>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#prayer">Prayer Times</a>
+            <a href="#settings">Settings</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container" id="home">
+        <h1>Ramadan date Sweden 🕓</h1>
+        <p class="greeting" id="greeting"></p>
+
+        <section class="countdown-section">
+            <h2 class="section-title">Countdown to the Holy Month</h2>
+            <p style="margin-bottom:1rem; font-size:1.2rem;">Ramadan begins in Sweden on <strong>February 19, 2026</strong></p>
+            <div class="timer">
+                <div class="timer-box">
+                    <div class="timer-number" id="days">00</div>
+                    <div class="timer-label">Days</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-number" id="hours">00</div>
+                    <div class="timer-label">Hours</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-number" id="minutes">00</div>
+                    <div class="timer-label">Minutes</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-number" id="seconds">00</div>
+                    <div class="timer-label">Seconds</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quotes-section">
+            <h2 class="section-title">IMSPIRING REFLECTIONS</h2>
+            <div class="quotes-grid" id="quotes-grid"></div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="info-section">
+            <h2 class="section-title">About Ramadan</h2>
+            <div class="info-content">
+                <p>Ramadan is the ninth month of the Islamic lunar calendar, observed by Muslims worldwide as a month of fasting, prayer, reflection, and community. It commemorates the first revelation of the Quran to Prophet Muhammad. This year, Ramadan in Sweden is expected to begin on the evening of February 18, 2026, with the first day of fasting on February 19.</p>
+                <p>During Ramadan, Muslims fast from dawn until sunset, abstaining from food, drink, and other physical needs. It's a time for spiritual growth, self-discipline, and empathy for the less fortunate.</p>
+            </div>
+        </section>
+
+        <!-- Prayer Times Section -->
+        <section id="prayer" class="info-section">
+            <h2 class="section-title">Prayer Times (Motala)</h2>
+            <div class="prayer-times">
+                <div class="prayer-item">
+                    <div class="prayer-name">Fajr</div>
+                    <div class="prayer-time">05:23</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">Sunrise</div>
+                    <div class="prayer-time">07:02</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">Dhuhr</div>
+                    <div class="prayer-time">12:15</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">Asr</div>
+                    <div class="prayer-time">15:20</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">Maghrib</div>
+                    <div class="prayer-time">17:45</div>
+                </div>
+                <div class="prayer-item">
+                    <div class="prayer-name">Isha</div>
+                    <div class="prayer-time">19:30</div>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:1rem; opacity:0.8;">*Times are approximate and may vary by city. Please check local sources.</p>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="info-section">
+            <h2 class="section-title">Settings</h2>
+            <div class="settings-form">
+                <div class="setting-group">
+                    <label class="setting-label" for="city">Your City</label>
+                    <input type="text" id="city" class="setting-input" placeholder="e.g., Motala" value="Motala">
+                </div>
+
+                <div class="setting-group">
+                    <label class="setting-label" for="method">Calculation Method</label>
+                    <select id="method" class="setting-select">
+                        <option value="MWL">Muslim World League</option>
+                        <option value="ISNA">ISNA</option>
+                        <option value="Egypt">Egyptian General Authority</option>
+                        <option value="UmmAlQura">Umm al-Qura (Makkah)</option>
+                        <option value="Dubai">Dubai (experimental)</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <span class="setting-label">Time Format</span>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="timeFormat" value="24h" checked> 24h
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="timeFormat" value="12h"> 12h (AM/PM)
+                        </label>
+                    </div>
+                </div>
+
+                <button class="setting-button" id="saveSettings">Save Preferences</button>
+                <p style="text-align:center; opacity:0.7; font-size:0.9rem; margin-top:1rem;">(Demo – settings are not persistent)</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="info-section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item">📧 danammar.2013@gmail.com</div>
+                <div class="contact-item">📞 +46 73 638 51 72</div>
+                <div class="contact-item">📍 Motala, Sweden</div>
+            </div>
+            <p style="text-align:center; margin-top:2rem;">We'd love to hear from you! Reach out for any questions or community events.</p>
+        </section>
+
+        <footer>— Ramadan Mubarak —</footer>
+    </div>
+
+    <script>
+        (function() {
+            // ----- DATA (classic JSON) -----
+            const ramadanData = {
+                greetings: [
+                    "May this Ramadan bring peace, blessings, and joy to your heart.",
+                    "Ramadan Kareem! A time for reflection, gratitude, and generosity.",
+                    "Blessed month of mercy and forgiveness. Welcome, Ramadan!",
+                    "As the crescent moon appears, may your heart be filled with light.",
+                    "Sweden welcomes the holy month with open hearts and peaceful spirits."
+                ],
+                quotes: [
+                    "“The best of you are those who learn the Quran and teach it.”",
+                    "“Whoever fasts Ramadan with faith and hope, his past sins will be forgiven.”",
+                    "“Generosity is a quality of the people of Paradise.”",
+                    "“Feed the hungry, visit the sick, and free the captive.”",
+                    "“When Ramadan arrives, the gates of Paradise are opened.”",
+                    "“Fasting is a shield; so let your day of fasting not be filled with obscenity.”"
+                ]
+            };
+
+            // ----- DISPLAY GREETING & QUOTES -----
+            document.getElementById('greeting').textContent = 
+                ramadanData.greetings[Math.floor(Math.random() * ramadanData.greetings.length)];
+
+            const quotesGrid = document.getElementById('quotes-grid');
+            ramadanData.quotes.forEach(quote => {
+                const card = document.createElement('div');
+                card.className = 'quote-card';
+                card.textContent = quote;
+                quotesGrid.appendChild(card);
+            });
+
+            // ----- COUNTDOWN TIMER (Feb 19, 2026, Sweden) -----
+            const targetDate = new Date('February 19, 2026 00:00:00 GMT+0100').getTime();
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance <= 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (86400000)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (3600000)) / (1000 * 60));
+                const seconds = Math.floor((distance % (60000)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+
+            // ----- INTERSECTION OBSERVER FOR SECTION ANIMATIONS -----
+            const sections = document.querySelectorAll('.info-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+            sections.forEach(section => observer.observe(section));
+
+            // ----- SETTINGS SAVE BUTTON (demo) -----
+            document.getElementById('saveSettings').addEventListener('click', function() {
+                const city = document.getElementById('city').value;
+                const method = document.getElementById('method').options[document.getElementById('method').selectedIndex].text;
+                const format = document.querySelector('input[name="timeFormat"]:checked').value;
+                alert(`Settings saved (demo):\nCity: ${city}\nMethod: ${method}\nFormat: ${format === '24h' ? '24-hour' : '12-hour'}`);
+            });
+        })();
+    </script>
+</body>
+</html>
